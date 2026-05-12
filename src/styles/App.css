@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2563eb;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.header__brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header__nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.home {
+  padding: 2rem;
+}
+
+.search-bar {
+  margin-bottom: 1rem;
+}
+
+.search-bar__input {
+  width: 100%;
+  max-width: 480px;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.home__placeholder {
+  color: #666;
+}
+
+.not-found {
+  padding: 2rem;
+}
