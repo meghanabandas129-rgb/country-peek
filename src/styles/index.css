@@ -14,3 +14,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.home__status--error {
+  color: black;
+  background: yellow;
+}
