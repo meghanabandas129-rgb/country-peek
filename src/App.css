@@ -1,0 +1,47 @@
+/* General status messages */
+.status {
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.status.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Search bar styling */
+.search-bar {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Grid layout for country cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Individual card styling */
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.card img {
+  margin-top: 0.5rem;
+  border-radius: 4px;
+}
