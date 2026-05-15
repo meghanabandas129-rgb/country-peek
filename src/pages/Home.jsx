@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import SearchBar from "../components/SearchBar";
+import CountryCard from "../components/CountryCard";
 
 function Home() {
   const [query, setQuery] = useState("");
@@ -8,17 +9,23 @@ function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // if search input is empty
     if (!query) {
       setCountries([]);
       setError(null);
       return;
     }
 
+    // debounce timer
     const timer = setTimeout(() => {
       setLoading(true);
+
       fetch(`https://restcountries.com/v3.1/name/${query}`)
         .then((res) => {
-          if (!res.ok) throw new Error("Not found");
+          if (!res.ok) {
+            throw new Error("No countries found.");
+          }
+
           return res.json();
         })
         .then((data) => {
@@ -29,9 +36,12 @@ function Home() {
           setCountries([]);
           setError("No countries found.");
         })
-        .finally(() => setLoading(false));
+        .finally(() => {
+          setLoading(false);
+        });
     }, 400);
 
+    // cleanup function
     return () => clearTimeout(timer);
   }, [query]);
 
@@ -39,30 +49,37 @@ function Home() {
     <div className="home">
       <SearchBar query={query} onQueryChange={setQuery} />
 
-      {/* Status messages */}
-      {loading && <p className="status">Loading...</p>}
-      {error && <p className="status error">{error}</p>}
-      {!loading && !error && countries.length === 0 && !query && (
-        <p className="status">Start searching to explore countries.</p>
+      {loading && (
+        <p className="home__status">
+          Loading...
+        </p>
       )}
 
-      {/* Cards grid */}
+      {error && (
+        <p className="home__status home__status--error">
+          {error}
+        </p>
+      )}
+
       {!loading && !error && countries.length > 0 && (
-        <div className="grid">
+        <div className="cards-grid">
           {countries.map((country) => (
-            <div key={country.cca3} className="card">
-              <h2>{country.name.common}</h2>
-              <p>Capital: {country.capital?.[0] || "N/A"}</p>
-              <p>Population: {country.population?.toLocaleString() || "N/A"}</p>
-              <img
-                src={country.flags?.png}
-                alt={`Flag of ${country.name.common}`}
-                width="120"
-              />
-            </div>
+            <CountryCard
+              key={country.cca3}
+              country={country}
+            />
           ))}
         </div>
       )}
+
+      {!loading &&
+        !error &&
+        countries.length === 0 &&
+        query === "" && (
+          <p className="home__status">
+            Start searching to explore countries.
+          </p>
+        )}
     </div>
   );
 }
