@@ -6,13 +6,22 @@ function Header() {
 
   return (
     <header className="header">
-      <h1 className="header__title">
-        <Link to="/">CountryPeek</Link>
-      </h1>
+      <h1>CountryPeek</h1>
 
-      <nav className="header__nav">
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+      <nav>
+        <Link to="/">Home</Link>
+
+        <Link to="/favourites">
+          Favourites
+        </Link>
+
+        <button
+          className="theme-btn"
+          onClick={toggleTheme}
+        >
+          {theme === 'light'
+            ? '🌙 Dark Mode'
+            : '☀ Light Mode'}
         </button>
       </nav>
     </header>
