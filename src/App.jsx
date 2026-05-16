@@ -1,13 +1,35 @@
-import React from "react";
-import Home from "./pages/Home";
+import { Routes, Route } from 'react-router-dom'
 
-const App = () => {
+import Home from './pages/Home'
+import CountryDetail from './pages/CountryDetail'
+import Favourites from './pages/Favourites'
+
+import Header from './components/Header'
+
+import './App.css'
+
+function App() {
   return (
-    <div className="app">
-      <h1>Country Peek</h1>
-      <Home />
-    </div>
-  );
-};
+    <>
+      <Header />
 
-export default App;
+      <main className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+
+          <Route
+            path="/country/:cca3"
+            element={<CountryDetail />}
+          />
+
+          <Route
+            path="/favourites"
+            element={<Favourites />}
+          />
+        </Routes>
+      </main>
+    </>
+  )
+}
+
+export default App
