@@ -1,33 +1,41 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 function CountryCard({ country }) {
-  const { name, flags, population, region, capital, cca3 } = country;
-
   return (
-    <Link to={`/country/${cca3}`} className="card">
-      <img
-        src={flags.svg}
-        alt={`${name.common} flag`}
-        className="card__flag"
-      />
+    <Link to={`/country/${country.cca3}`}>
+      <article className="card">
 
-      <div className="card__body">
-        <h3 className="card__name">{name.common}</h3>
+        <img
+          src={country.flags.png}
+          alt={country.name.common}
+        />
 
-        <p>
-          <span>Population:</span> {population.toLocaleString()}
-        </p>
+        <div className="card__content">
 
-        <p>
-          <span>Region:</span> {region}
-        </p>
+          <h2 className="card__title">
+            {country.name.common}
+          </h2>
 
-        <p>
-          <span>Capital:</span> {capital?.[0] ?? "N/A"}
-        </p>
-      </div>
+          <p>
+            <strong>Population:</strong>{' '}
+            {country.population.toLocaleString()}
+          </p>
+
+          <p>
+            <strong>Region:</strong>{' '}
+            {country.region}
+          </p>
+
+          <p>
+            <strong>Capital:</strong>{' '}
+            {country.capital?.[0]}
+          </p>
+
+        </div>
+
+      </article>
     </Link>
-  );
+  )
 }
 
-export default CountryCard;
+export default CountryCard
